@@ -1,4 +1,4 @@
-# Cat vs Non-Cat Classification
+# 🐱 Cat vs Non-Cat Classification
 This GitHub repository contains the latest solution I made for the Cat vs Non-Cat classification problem. The goal of this project is to train a machine learning model that can classify images as either cats or non-cats.
 
 ## 📋 Problem Description
