@@ -1,25 +1,31 @@
 import logo from './logo.svg';
 import './App.css';
+import React, { useState } from 'react';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [selectedImage, setSelectedImage] = useState(null);
+
+    const handleImageChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                setSelectedImage(reader.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    return (
+        <div className="App">
+            <div className="App-header">Cat classifier</div>
+            <div className="upload-row">
+                <p>Upload an image:&nbsp;</p>
+                <input type="file" accept="image/*" onChange={handleImageChange} />
+            </div>
+            {selectedImage && <img src={selectedImage} alt="Selected" />}
+        </div>
+    );
 }
 
 export default App;
