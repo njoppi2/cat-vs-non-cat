@@ -4,17 +4,15 @@ from app.model.model import perform_image_classification, __version__ as model_v
 
 app = FastAPI()
 
-
 @app.get("/")
 def home():
     return {"health_check": "OK", "model_version": model_version}
 
-
 @app.post("/predict")
 def predict(image: UploadFile = File(...)):
     try:
-        # Perform image classification directly with the uploaded file
-        predicted_class = perform_image_classification(image.file)
+        # Perform image classification directly with the uploaded file's contents
+        predicted_class = perform_image_classification(image.file.read())
         
         return JSONResponse(content={"predicted_class": predicted_class})
     except Exception as e:
