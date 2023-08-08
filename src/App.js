@@ -22,7 +22,7 @@ function App() {
                 const formData = new FormData();
                 formData.append('image', dataURItoBlob(selectedImage)); // Convert data URI to Blob
 
-                const response = await fetch('http://127.0.0.1:8000/predict', {
+                const response = await fetch('njoppi2.duckdns.org:8000/predict', {
                     method: 'POST',
                     body: formData,
                 });
