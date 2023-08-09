@@ -29,6 +29,6 @@ def perform_image_classification(image):
     
     print("Prediction:", predicted_class)  # Add this line
 
-    return int(predicted_class)  # Convert prediction to integer (0 or 1)
+    return round(predicted_class[0])  # Convert prediction to integer (0 or 1)
 
 __version__ = "1.0.0"
