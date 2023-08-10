@@ -10,8 +10,6 @@ function App() {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        console.log("selectedImage: " + !!selectedImage)
-        console.log("classificationResult: " + !!classificationResult)
     }, [classificationResult, selectedImage]);
 
     const handleImageChange = (event) => {
@@ -67,7 +65,7 @@ function App() {
                 <p className="upload-image">Upload an image:&nbsp;</p>
                 <input type="file" accept="image/*" onChange={handleImageChange} />
             </div>
-            <button className="upload-row" onClick={handleImageUpload}>Classify Image</button>
+            <button className={`upload-row ${!selectedImage ? 'invisible' : ''}`} onClick={handleImageUpload}>Classify Image</button>
             {selectedImage
                 ?
                 <img src={selectedImage} alt="Selected" />
