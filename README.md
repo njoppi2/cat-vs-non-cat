@@ -1,5 +1,5 @@
 # 🐱 Cat vs Non-Cat
-I demonstrate my ability to create and deploy a machine learning application by using a simple image classification project (cat vs. non-cat). This involves an interactive website deployed using GitHub pages ([frontend](https://github.com/njoppi2/cat-vs-non-cat/tree/front-end) branch), three notebooks with basic ML models ([notebooks-and-models](https://github.com/njoppi2/cat-vs-non-cat/tree/notebooks-and-models) branch), and this branch, with deployment files for creating an API, Dockerizing it, and deploying to Heroku (deployment branch). Each branch has a README file explaining them in detail.
+I demonstrate my ability to create and deploy a machine learning application by using a simple image classification project (cat vs. non-cat). This involves an interactive website deployed using GitHub pages ([frontend](https://github.com/njoppi2/cat-vs-non-cat/tree/front-end) branch), three notebooks with basic ML models ([notebooks-and-models](https://github.com/njoppi2/cat-vs-non-cat/tree/notebooks-and-models) branch), and the current deployment branch, containing files for API creation, Dockerization, and Heroku deployment. Each branch includes a detailed README file.
 
 ## 🚀 Running the API & Deploying
 
