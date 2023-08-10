@@ -5,7 +5,7 @@
     background-image: repeating-linear-gradient(36deg, rgba(0, 0, 0, 0.1), rgba(253, 0, 0, 0.1) 1px, transparent 0px, transparent 2px);
     font-family: Arial, Helvetica, sans-serif;
     color: white;
-    padding-top: 50px;
+    padding-top: 30px;
     box-sizing: border-box;
     overflow-x: hidden;
     display: flex;
@@ -17,17 +17,27 @@
 
 .App-header {
     font-size: 60px;
+    position: relative;
+
+    &::after {
+        content: '(simple model)';
+        position: absolute;
+        width: 20px;
+        right: 0;
+        bottom: -1px;
+        font-size: 7px;
+    }
 }
 
 .upload-row {
-    margin-top: 30px;
+    margin-top: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 320px;
 }
 
-p {
+.upload-image {
     min-width: 130px;
 }
 
@@ -37,7 +47,30 @@ input[type="file"] {
 }
 
 img {
-    max-width: 300px;
+    max-width: 200px;
     height: auto;
     margin: 30px 0;
+}
+
+button {
+    width: 120px !important;
+    height: 30px;
+}
+
+.small {
+    font-size: 7px;
+    display: inline;
+    display: none;
+}
+
+.gif {
+    height: 15px;
+    width: 15px;
+    border-radius: 20%;
+    margin: 0;
+}
+
+p {
+    margin: 0;
+    height: 15px;
 }
