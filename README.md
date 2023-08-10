@@ -1,5 +1,5 @@
-# 🐱 Cat vs Non-Cat Classification
-This GitHub repository contains the latest solution I made for the Cat vs Non-Cat classification problem. The goal of this project is to train a machine learning model that can classify images as either cats or non-cats.
+# 🐱 Cat vs Non-Cat
+Here we have 3 notebooks, with logitic regression and neural network models. They're quite simple, and were trained on just 209 images and validaded on 50 other images, although, data augmentation was used to duplicate the size of the training set. The best performing model was the convolutional neural network, with an accuracy of about 84% on the test set (here we don't have a validation set).
 
 ## 📋 Problem Description
 The Cat vs Non-Cat problem is a classic machine learning challenge where we need to build a model that can accurately classify images as either cat or non-cat.
