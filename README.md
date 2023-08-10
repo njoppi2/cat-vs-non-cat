@@ -1,7 +1,7 @@
 # 🐱 Cat vs Non-Cat
 Here is a simple react website I made just to interact with the deployed API. To access it, click [here](https://njoppi2.github.io/cat-vs-non-cat/).
 
-## 👟 Running the website
+## 👟 Running the website locally
 
 1. **Run**: `npm start`
 
