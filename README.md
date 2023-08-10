@@ -10,7 +10,9 @@ I demonstrate my ability to create and deploy a machine learning application by 
 
 #### Update Heroku server
 
-1. **Push**: `git push heroku deployment:main`
+1. **Add**:  `git add .`
+2. **Commit**:  `git commit -m "your commit"`
+3. **Push**: `git push heroku deployment:main`
 
 ## 📂 Repository Structure
 **app/**: This directory contains files to run the server's API, as well as a saved machine learning model as a pickle file, to be run when the API receives a request.
