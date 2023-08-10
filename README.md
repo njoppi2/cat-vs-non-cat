@@ -3,15 +3,20 @@ I demonstrate my ability to create and deploy a machine learning application by 
 
 ## 🚀 Running the API & Deploying
 
-#### Dockerized ML API
+#### Run API locally via docker
 
 1. **Build**: `docker build -t cat-api .`
 2. **Run**: `docker run -p 8000:8000 cat-api`
 
+#### Create Heroku server
+1. **Create**: `heroku create cat-classifier-app`
+2. **Set git remote**: `heroku git:remote cat-classifier-app`
+3. **Heroku Docker setup**: `heroku stack:set container`
+
 #### Update Heroku server
 
-1. **Add**:  `git add .`
-2. **Commit**:  `git commit -m "your commit"`
+1. **Add**: `git add .`
+2. **Commit**: `git commit -m "your commit"`
 3. **Push**: `git push heroku deployment:main`
 
 ## 📂 Repository Structure
