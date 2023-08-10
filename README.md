@@ -1,18 +1,23 @@
-# 🐱 Cat vs Non-Cat Classification
-This GitHub repository contains the latest solution I made for the Cat vs Non-Cat classification problem. The goal of this project is to train a machine learning model that can classify images as either cats or non-cats.
+# 🐱 Cat vs Non-Cat
+I demonstrate my ability to create and deploy a machine learning application by using a simple image classification project (cat vs. non-cat). This involves an interactive website deployed using GitHub pages ([frontend](https://github.com/njoppi2/cat-vs-non-cat/tree/front-end) branch), three notebooks with basic ML models ([notebooks-and-models](https://github.com/njoppi2/cat-vs-non-cat/tree/notebooks-and-models) branch), and this branch, with deployment files for creating an API, Dockerizing it, and deploying to Heroku (deployment branch). Each branch has a README file explaining them in detail.
 
-## 📋 Problem Description
-The Cat vs Non-Cat problem is a classic machine learning challenge where we need to build a model that can accurately classify images as either cat or non-cat.
+## 🚀 Running the API & Deploying
+
+#### Dockerized ML API
+
+1. **Build**: `docker build -t cat-api .`
+2. **Run**: `docker run -p 8000:8000 cat-api`
+
+#### Update Heroku server
+
+1. **Push**: `git push heroku deployment:main`
 
 ## 📂 Repository Structure
-**data/**: This directory contains the dataset used for training and evaluation. The train_catvnoncat.h5 file includes the labeled data for training the model, while the test_catvnoncat.h5 file contains the unlabeled data for predictions.
+**app/**: This directory contains files to run the server's API, as well as a saved machine learning model as a pickle file, to be run when the API receives a request.
 
-**utils/**: This directory contains utility functions and helper scripts used in the project.
+**Dockerfile**: This file contains instructions for Docker to set up a separate and self-contained environment for an application.
 
-***.ipynb**: Notebook containing a different model to classify the images.
+**requirements.txt**: This file lists the external libraries and dependencies needed for a Python project to run successfully within a Docker container.
 
+**heroku.yml**: This file provides configuration instructions for deploying and running applications on the Heroku platform.
 
-<!-- ## 🤖 Solution:
-
-
- i can follow this https://github.com/leihao1/Comparison-of-Machine-Learning-Prediction-Models
