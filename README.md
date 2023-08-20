@@ -1,15 +1,18 @@
 # 🐱 Cat vs Non-Cat
 I demonstrate my ability to create and deploy a machine learning application by using a simple image classification project (cat vs. non-cat). This involves an interactive website deployed using GitHub pages ([frontend](https://github.com/njoppi2/cat-vs-non-cat/tree/front-end) branch), three notebooks with basic ML models ([notebooks-and-models](https://github.com/njoppi2/cat-vs-non-cat/tree/notebooks-and-models) branch), and the current deployment branch, containing files for API creation, Dockerization, and Heroku deployment. Each branch includes a detailed README file.
 
-## 👟 Run API locally
+## 👟 Run and interact with API locally
 
 #### Manually
 
-`uvicorn app.main:app --reload`
+1. **Run**: `uvicorn app.main:app --reload`
+2. **Interact via browser**: Access `http://127.0.0.1:8000/docs`
 #### Using docker
 
 1. **Build**: `docker build -t cat-api .`
-2. **Run**: `docker run -p 8000:8000 cat-api`
+2. **Run**: `docker run -p 8000:80 cat-api`
+3. **Interact via browser**: Access `http://0.0.0.0:8000/docs`
+  
 
 ## 🚀 Deploying to Heroku
 
