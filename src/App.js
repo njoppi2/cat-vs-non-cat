@@ -1,16 +1,12 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import cat from './images/cat.png'
 import loadingGif from './images/loading.gif'
-
 
 function App() {
     const [selectedImage, setSelectedImage] = useState(null);
     const [classificationResult, setClassificationResult] = useState(null);
     const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-    }, [classificationResult, selectedImage]);
 
     const handleImageChange = (event) => {
         const file = event.target.files[0];
@@ -56,6 +52,20 @@ function App() {
         }
         return new Blob([ab], { type: mimeString });
     }
+
+    // Add an alert when the component mounts, but only if it hasn't been shown already
+    useEffect(() => {
+        // This "if" statement is necessary to prevent the alert from showing twice
+        if (!pageLoadedRef.current) {
+            alert('The actual classification won\'t work, because I stopped paying for the Heroku server. ;)');
+            pageLoadedRef.current = true;
+        }
+    }, []); // Empty dependency array to run only once on mount
+
+    useEffect(() => {
+    }, [classificationResult, selectedImage]);
+
+    const pageLoadedRef = useRef(false); // Use a ref to track page load
 
 
     return (
