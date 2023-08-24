@@ -1,30 +1,32 @@
 import './App.css';
-import React, { useState, useEffect, useRef } from 'react';
-import cat from './images/cat.png'
-import loadingGif from './images/loading.gif'
+import React, { useState, useEffect, ChangeEvent } from 'react';
+import cat from './images/cat.png';
+import loadingGif from './images/loading.gif';
 
 function App() {
-    const [selectedImage, setSelectedImage] = useState(null);
-    const [classificationResult, setClassificationResult] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const [selectedImage, setSelectedImage] = useState<string | null>(null);
+    const [classificationResult, setClassificationResult] = useState<string | null>(null);
+    const [loading, setLoading] = useState<boolean>(false);
 
-    const handleImageChange = (event) => {
-        const file = event.target.files[0];
+    const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
         if (file) {
             const reader = new FileReader();
             reader.onload = () => {
-                setSelectedImage(reader.result);
+                setSelectedImage(reader.result as string);
             };
             reader.readAsDataURL(file);
         }
     };
 
     const handleImageUpload = async () => {
+        alert('The actual classification won\'t work, because I stopped paying for the Heroku server. ;)');
+
         if (selectedImage) {
             try {
                 setLoading(true);
                 const formData = new FormData();
-                formData.append('image', dataURItoBlob(selectedImage)); // Convert data URI to Blob
+                formData.append('image', dataURItoBlob(selectedImage));
 
                 const response = await fetch('https://cat-app-github-beab32ceaa08.herokuapp.com/predict', {
                     method: 'POST',
@@ -41,8 +43,7 @@ function App() {
         }
     };
 
-    // Helper function to convert data URI to Blob
-    function dataURItoBlob(dataURI) {
+    function dataURItoBlob(dataURI: string): Blob {
         const byteString = atob(dataURI.split(',')[1]);
         const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
         const ab = new ArrayBuffer(byteString.length);
@@ -53,20 +54,9 @@ function App() {
         return new Blob([ab], { type: mimeString });
     }
 
-    // Add an alert when the component mounts, but only if it hasn't been shown already
     useEffect(() => {
-        // This "if" statement is necessary to prevent the alert from showing twice
-        if (!pageLoadedRef.current) {
-            alert('The actual classification won\'t work, because I stopped paying for the Heroku server. ;)');
-            pageLoadedRef.current = true;
-        }
-    }, []); // Empty dependency array to run only once on mount
-
-    useEffect(() => {
+        // Add any additional logic you need here
     }, [classificationResult, selectedImage]);
-
-    const pageLoadedRef = useRef(false); // Use a ref to track page load
-
 
     return (
         <div className="App">
@@ -77,10 +67,8 @@ function App() {
             </div>
             <button className={`upload-row ${!selectedImage ? 'invisible' : ''}`} onClick={handleImageUpload}>Classify Image</button>
             {selectedImage
-                ?
-                <img src={selectedImage} alt="Selected" />
-                :
-                <img src={cat} alt="cat" />}
+                ? <img src={selectedImage} alt="Selected" />
+                : <img src={cat} alt="cat" />}
             <div className="upload-row">
                 <p>Classification Result:&nbsp;</p>
                 <p>
