@@ -1,0 +1,5 @@
+**/deployment/*.** linguist-detectable=true
+**/notebooks-and-models/*.** linguist-detectable=true
+**/front-end/src/*.tsx linguist-detectable=true
+**/*.ipynb linguist-documentation=true
+
