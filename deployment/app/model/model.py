@@ -11,7 +11,7 @@ def load_model():
 
 def preprocess_image(image):
     # Resize, normalize, and preprocess the image for model input
-    img = Image.open(image)
+    img = Image.open(image).convert("RGB")
     img = img.resize((64, 64))
     img = np.array(img) / 255.0
     img = img.reshape(1, 64, 64, 3)
@@ -27,6 +27,8 @@ def perform_image_classification(image):
     # Make a prediction using the model
     predicted_class = model.predict(processed_image)[0]  # Assuming the model output is a single value
     
-    return int(predicted_class)  # Convert prediction to integer (0 or 1)
+    print("Prediction:", predicted_class)  # Add this line
+
+    return round(predicted_class[0])  # Convert prediction to integer (0 or 1)
 
 __version__ = "1.0.0"
