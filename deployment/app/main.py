@@ -1,9 +1,10 @@
+import os
+import tempfile
 from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from app.model.model import perform_image_classification, __version__ as model_version
-import os
-import tempfile
+import logging
 
 app = FastAPI()
 
@@ -22,6 +23,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Configure logging
+logging.basicConfig(level=logging.ERROR)
+logger = logging.getLogger(__name__)
+
 @app.get("/")
 def home():
     return {"health_check": "OK", "model_version": model_version}
@@ -36,11 +41,12 @@ def predict(image: UploadFile = File(...)):
 
         # Perform image classification using the saved file
         predicted_class = perform_image_classification(temp_filename)
-        
-        # Remove the temporary file
-        os.remove(temp_filename)
 
         return JSONResponse(content={"predicted_class": predicted_class})
     except Exception as e:
-        print("Error:", str(e))
-        return JSONResponse(content={"error": str(e)}, status_code=500)
+        logger.error(f"Error: {str(e)}")
+        return JSONResponse(content={"error": "Bad Request"}, status_code=400)
+    finally:
+        # Ensure the temporary file is deleted, even if an exception occurs
+        if os.path.exists(temp_filename):
+            os.remove(temp_filename)
