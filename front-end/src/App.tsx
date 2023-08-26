@@ -31,6 +31,7 @@ function App() {
         }
 
         if (!selectedImage) {
+            alert("Please select an image first.");
             return;
         }
 
