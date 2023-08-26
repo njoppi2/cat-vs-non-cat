@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, useEffect, ChangeEvent } from 'react';
+import { useState, ChangeEvent } from 'react';
 import cat from './images/cat.png';
 import loadingGif from './images/loading.gif';
 
