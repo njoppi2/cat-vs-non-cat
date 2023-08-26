@@ -3,12 +3,17 @@ import React, { useState, useEffect, ChangeEvent } from 'react';
 import cat from './images/cat.png';
 import loadingGif from './images/loading.gif';
 
+const apiWorksEnv = process.env.REACT_APP_API_WORKS ?? 'true';
+const remoteApiWorks = (apiWorksEnv === 'true');
+const ApiURL = process.env.REACT_APP_API_URL ?? 'http://0.0.0.0:8000/predict'
+
 function App() {
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const [classificationResult, setClassificationResult] = useState<string | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
 
     const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setClassificationResult(null);
         const file = event.target.files?.[0];
         if (file) {
             const reader = new FileReader();
@@ -20,26 +25,34 @@ function App() {
     };
 
     const handleImageUpload = async () => {
-        alert('The actual classification won\'t work, because I stopped paying for the Heroku server. ;)');
+        if (!remoteApiWorks) {
+            alert("The actual classification won't work, because I stopped paying for the Heroku server. ;)");
+            return; // Return early to avoid the rest of the function
+        }
 
-        if (selectedImage) {
-            try {
-                setLoading(true);
-                const formData = new FormData();
-                formData.append('image', dataURItoBlob(selectedImage));
+        if (!selectedImage) {
+            return;
+        }
 
-                const response = await fetch('https://cat-app-github-beab32ceaa08.herokuapp.com/predict', {
-                    method: 'POST',
-                    body: formData,
-                });
+        try {
+            setLoading(true);
 
-                const data = await response.json();
-                console.log('Response Data:', data);
-                setClassificationResult(data.predicted_class);
-                setLoading(false);
-            } catch (error) {
-                console.error('Error uploading image:', error);
-            }
+            const formData = new FormData();
+            formData.append('image', dataURItoBlob(selectedImage));
+
+            const response = await fetch(ApiURL, {
+
+                method: 'POST',
+                body: formData,
+            });
+
+            const data = await response.json();
+            console.log('Response Data:', data);
+            setClassificationResult(data.predicted_class);
+        } catch (error) {
+            console.error('Error uploading image:', error);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -54,10 +67,6 @@ function App() {
         return new Blob([ab], { type: mimeString });
     }
 
-    useEffect(() => {
-        // Add any additional logic you need here
-    }, [classificationResult, selectedImage]);
-
     return (
         <div className="App">
             <div className="App-header">Cat classifier<p className="small">(Simple)</p></div>
@@ -67,12 +76,21 @@ function App() {
             </div>
             <button className={`upload-row ${!selectedImage ? 'invisible' : ''}`} onClick={handleImageUpload}>Classify Image</button>
             {selectedImage
-                ? <img src={selectedImage} alt="Selected" />
-                : <img src={cat} alt="cat" />}
+                ?
+                <img src={selectedImage} alt="Selected" />
+                :
+                <img src={cat} alt="cat" />}
             <div className="upload-row">
                 <p>Classification Result:&nbsp;</p>
                 <p>
-                    {!selectedImage ? "Cat" : (classificationResult === null) ? (loading && <img className="gif" src={loadingGif} alt="loading" />) : (classificationResult ? "Cat" : "Not a cat")}
+                    {!selectedImage
+                        ? "Cat"
+                        : loading
+                            ? <img className="gif" src={loadingGif} alt="loading" />
+                            : classificationResult
+                                ? "Cat"
+                                : ""
+                    }
                 </p>
             </div>
         </div>

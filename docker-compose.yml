@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  react-frontend:
+    build:
+      context: './front-end'
+    ports:
+      - '3000:3000'
+    # ↓ NOT NECESSARY BECAUSE IT'S ALREADY DONE IN ./front-end/Dockerfile
+    # ↓ AND, THIS WOULD OVERWRITE THE ENVIRONMENT VARIABLES PASSED BY THE GITHUB WORKFLOW YML FILE
+    # environment:
+    #   - REACT_APP_API_URL=http://0.0.0.0:8000/predict
+    #   - REACT_APP_API_WORKS=true
+  fastapi-backend:
+    build: './deployment'
+    ports:
+      - '8000:80'
