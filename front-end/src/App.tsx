@@ -26,7 +26,7 @@ function App() {
 
     const handleImageUpload = async () => {
         if (!remoteApiWorks) {
-            alert("The actual classification won't work, because I stopped paying for the Heroku server. ;)");
+            alert("The actual classification won't work on production, because I stopped paying for the Heroku server. ;)");
             return; // Return early to avoid the rest of the function
         }
 
