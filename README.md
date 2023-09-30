@@ -1,5 +1,5 @@
 # 🐱 Cat vs Non-Cat
-This repository showcases the Cat vs Non-Cat project, demonstrating various aspects of machine learning, web development, and deployment. Each folder within this repository contributes to different components of the project. For more detailed information, you can enter each folder and read their README's. Remeber that before execute the commands of any folder, you must enter their directory: `cd <folder>`.
+This repository showcases the Cat vs Non-Cat project, demonstrating various aspects of machine learning, web development, and deployment. Each folder within this repository contributes to different components of the project. For more detailed information, you can enter each folder and read their README's.
 
 <br/>
 
@@ -8,6 +8,8 @@ This repository showcases the Cat vs Non-Cat project, demonstrating various aspe
 I demonstrate my ability to create and deploy a machine learning application by using a simple image classification project (cat vs. non-cat). This involves an interactive website deployed using GitHub pages ([frontend](https://github.com/njoppi2/cat-vs-non-cat/tree/front-end) branch), three notebooks with basic ML models ([notebooks-and-models](https://github.com/njoppi2/cat-vs-non-cat/tree/notebooks-and-models) branch), and the current deployment branch, containing files for API creation, Dockerization, and Heroku deployment. Each branch includes a detailed README file.
 
 ## 👟 Run and interact with API locally
+
+Before executing the commands of any folder, you must enter their directory: `cd <folder>`.
 
 #### Manually
 
