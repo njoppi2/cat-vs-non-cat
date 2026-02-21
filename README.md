@@ -1,19 +1,26 @@
 # Cat vs Non-Cat
 
-Image classification project that predicts whether an uploaded image is a cat or not.
+[![CI](https://img.shields.io/github/actions/workflow/status/njoppi2/cat-vs-non-cat/ci.yml?branch=main&label=CI)](https://github.com/njoppi2/cat-vs-non-cat/actions/workflows/ci.yml)
+[![Pages Deploy](https://img.shields.io/github/actions/workflow/status/njoppi2/cat-vs-non-cat/deploy-to-gh-pages.yml?branch=main&label=Pages)](https://github.com/njoppi2/cat-vs-non-cat/actions/workflows/deploy-to-gh-pages.yml)
+[![License](https://img.shields.io/github/license/njoppi2/cat-vs-non-cat)](LICENSE)
+[![Last Commit](https://img.shields.io/github/last-commit/njoppi2/cat-vs-non-cat)](https://github.com/njoppi2/cat-vs-non-cat/commits/main)
 
-This repository combines:
-
-- model experiments in notebooks,
-- a FastAPI prediction service,
-- and a React frontend for interactive usage.
+End-to-end image classification project that predicts whether an uploaded image is a cat, with notebook experiments, FastAPI serving, and a React frontend.
 
 Live frontend: <https://njoppi2.github.io/cat-vs-non-cat/>
+
+## Snapshot
+
+![Frontend loading state](front-end/src/images/loading.gif)
+
+## Problem
+
+Create a compact end-to-end ML app that covers model experimentation, API inference, and a simple user-facing interface for prediction.
 
 ## Tech Stack
 
 - Python, FastAPI, TensorFlow/Keras
-- React + TypeScript
+- React + TypeScript (Vite)
 - Docker / Docker Compose
 - GitHub Actions + GitHub Pages
 
@@ -21,10 +28,10 @@ Live frontend: <https://njoppi2.github.io/cat-vs-non-cat/>
 
 - `deployment/`: FastAPI backend and model-serving files
 - `front-end/`: React frontend
-- `notebooks-and-models/`: model experiments and training artifacts
-- `.github/workflows/`: CI/CD workflow for GitHub Pages
+- `notebooks-and-models/`: model training and experimentation artifacts
+- `.github/workflows/`: CI and deploy workflows
 
-## Quickstart (Docker Compose)
+## Quickstart
 
 From repository root:
 
@@ -43,7 +50,9 @@ Stop:
 docker compose down
 ```
 
-## Run Backend Only
+## Run Services Separately
+
+Backend:
 
 ```bash
 cd deployment
@@ -51,9 +60,7 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
-Then access `http://127.0.0.1:8000/docs`.
-
-## Run Frontend Only
+Frontend:
 
 ```bash
 cd front-end
@@ -61,37 +68,35 @@ npm install
 npm run dev
 ```
 
-Then access `http://localhost:3000`.
+## Validation and CI
 
-## Validation Checks
-
-Backend syntax check:
+Local checks:
 
 ```bash
 python -m compileall deployment/app
+cd front-end && npm ci && npm run build
 ```
 
-Frontend build check:
+CI validates backend syntax and frontend build. GitHub Pages workflow publishes frontend from `front-end/dist`.
 
-```bash
-cd front-end
-npm ci
-npm run build
-```
+## Results
 
-## Model Notes
+- Notebook-to-inference path is fully connected.
+- Frontend is publicly accessible via GitHub Pages.
+- Local Docker setup brings up both API and UI together.
 
-- The project includes logistic regression and neural network notebook baselines.
-- The CNN notebook/model is the best-performing experiment in this repository.
-- This project is intentionally educational and compact, with small datasets.
+## Limitations
 
-## Current Deployment Status
+- Model artifacts are still stored directly in the repository.
+- Training is notebook-centric, not fully script-driven.
+- Backend test coverage is still minimal.
 
-- GitHub Pages frontend is active.
-- Backend deployment files under `deployment/` are kept as legacy reference; local Docker/Compose is the primary supported run path.
+## Roadmap
 
-## Limitations / Next Improvements
+- Move large model binaries to Releases/LFS.
+- Add reproducible training CLI pipeline.
+- Add backend unit/smoke tests to CI.
 
-- Replace large model binaries with GitHub Releases or Git LFS.
-- Add reproducible training script(s) outside notebooks.
-- Add backend unit tests and smoke tests in CI.
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md).
