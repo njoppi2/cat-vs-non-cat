@@ -19,8 +19,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      REACT_APP_API_URL: ${{ secrets.MY_HEROKU_API }}
-      REACT_APP_API_WORKS: "false"
+      VITE_API_URL: ${{ secrets.MY_HEROKU_API }}
+      VITE_API_WORKS: "false"
 
     steps:
       - name: Checkout code
@@ -45,4 +45,4 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: ./front-end/build
+          folder: ./front-end/dist

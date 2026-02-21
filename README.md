@@ -58,7 +58,7 @@ Then access `http://127.0.0.1:8000/docs`.
 ```bash
 cd front-end
 npm install
-npm start
+npm run dev
 ```
 
 Then access `http://localhost:3000`.

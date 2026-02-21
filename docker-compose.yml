@@ -8,8 +8,8 @@ services:
     # ↓ NOT NECESSARY BECAUSE IT'S ALREADY DONE IN ./front-end/Dockerfile
     # ↓ AND, THIS WOULD OVERWRITE THE ENVIRONMENT VARIABLES PASSED BY THE GITHUB WORKFLOW YML FILE
     # environment:
-    #   - REACT_APP_API_URL=http://0.0.0.0:8000/predict
-    #   - REACT_APP_API_WORKS=true
+    #   - VITE_API_URL=http://0.0.0.0:8000/predict
+    #   - VITE_API_WORKS=true
   fastapi-backend:
     build: './deployment'
     ports:

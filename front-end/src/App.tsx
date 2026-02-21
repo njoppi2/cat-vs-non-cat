@@ -3,9 +3,9 @@ import { useState, ChangeEvent } from 'react';
 import cat from './images/cat.png';
 import loadingGif from './images/loading.gif';
 
-const apiWorksEnv = process.env.REACT_APP_API_WORKS ?? 'true';
+const apiWorksEnv = import.meta.env.VITE_API_WORKS ?? 'true';
 const remoteApiWorks = (apiWorksEnv === 'true');
-const ApiURL = process.env.REACT_APP_API_URL ?? 'http://0.0.0.0:8000/predict'
+const ApiURL = import.meta.env.VITE_API_URL ?? 'http://0.0.0.0:8000/predict'
 
 function App() {
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
