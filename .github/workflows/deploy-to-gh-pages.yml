@@ -1,34 +1,47 @@
-name: Deploy to GitHub Pages
+name: Deploy Frontend to GitHub Pages
 
 on:
   push:
+    branches: [main]
     paths:
-      - 'front-end/**'  # Trigger only when changes occur in the ./front-end folder
-      - '.github/workflows/**'
+      - "front-end/**"
+      - ".github/workflows/deploy-to-gh-pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gh-pages-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
       REACT_APP_API_URL: ${{ secrets.MY_HEROKU_API }}
-      REACT_APP_API_WORKS: false
+      REACT_APP_API_WORKS: "false"
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: '14.0'
-  
-      - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
-        run: | # the secret bellow is a varible I defined in the repo GitHub's settings
-          npm install
-          npm run build
-        working-directory: ./front-end
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: front-end/package-lock.json
 
-      - name: Deploy 🚀
+      - name: Install dependencies
+        working-directory: ./front-end
+        run: npm ci
+
+      - name: Build frontend
+        working-directory: ./front-end
+        run: npm run build
+
+      - name: Deploy to gh-pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages

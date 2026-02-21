@@ -63,6 +63,22 @@ npm start
 
 Then access `http://localhost:3000`.
 
+## Validation Checks
+
+Backend syntax check:
+
+```bash
+python -m compileall deployment/app
+```
+
+Frontend build check:
+
+```bash
+cd front-end
+npm ci
+npm run build
+```
+
 ## Model Notes
 
 - The project includes logistic regression and neural network notebook baselines.
@@ -72,7 +88,7 @@ Then access `http://localhost:3000`.
 ## Current Deployment Status
 
 - GitHub Pages frontend is active.
-- Heroku instructions remain in `deployment/`, but production API hosting is not currently guaranteed.
+- Backend deployment files under `deployment/` are kept as legacy reference; local Docker/Compose is the primary supported run path.
 
 ## Limitations / Next Improvements
 
