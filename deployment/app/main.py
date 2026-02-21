@@ -33,6 +33,7 @@ def home():
 
 @app.post("/predict")
 def predict(image: UploadFile = File(...)):
+    temp_filename = None
     try:
         # Save the received image data to a temporary file
         with tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as temp_file:
@@ -48,5 +49,5 @@ def predict(image: UploadFile = File(...)):
         return JSONResponse(content={"error": "Bad Request"}, status_code=400)
     finally:
         # Ensure the temporary file is deleted, even if an exception occurs
-        if os.path.exists(temp_filename):
+        if temp_filename and os.path.exists(temp_filename):
             os.remove(temp_filename)

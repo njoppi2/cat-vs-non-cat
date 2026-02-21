@@ -74,10 +74,11 @@ Local checks:
 
 ```bash
 python -m compileall deployment/app
+PYTHONPATH=deployment python -m unittest discover -s deployment/tests -p "test_*.py"
 cd front-end && npm ci && npm run build
 ```
 
-CI validates backend syntax and frontend build. GitHub Pages workflow publishes frontend from `front-end/dist`.
+CI validates backend syntax, backend API smoke tests, and frontend build. GitHub Pages workflow publishes frontend from `front-end/dist`.
 
 ## Results
 
