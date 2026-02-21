@@ -11,7 +11,9 @@ Live frontend: <https://njoppi2.github.io/cat-vs-non-cat/>
 
 ## Snapshot
 
-![Frontend loading state](front-end/src/images/loading.gif)
+<p align="center">
+  <img src="docs/images/app-snapshot.png" alt="Live Cat vs Non-Cat frontend showing upload and prediction result" width="900" />
+</p>
 
 ## Problem
 
