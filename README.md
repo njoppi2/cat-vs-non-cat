@@ -66,8 +66,8 @@ Frontend:
 
 ```bash
 cd front-end
-npm install
-npm run dev
+pnpm install --frozen-lockfile
+pnpm run dev
 ```
 
 ## Validation and CI
@@ -77,7 +77,7 @@ Local checks:
 ```bash
 python -m compileall deployment/app
 PYTHONPATH=deployment python -m unittest discover -s deployment/tests -p "test_*.py"
-cd front-end && npm ci && npm run build
+cd front-end && pnpm install --frozen-lockfile && pnpm run build
 ```
 
 CI validates backend syntax, backend API smoke tests, and frontend build. GitHub Pages workflow publishes frontend from `front-end/dist`.
@@ -103,3 +103,7 @@ CI validates backend syntax, backend API smoke tests, and frontend build. GitHub
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Dependency installation
+
+This project uses pnpm 10.34.7 with a frozen `pnpm-lock.yaml`. Run frontend commands from `front-end/`. Restore the shared package policy with My Scripts (`scripts/setup-pnpm-storage.sh --apply`), then run `pnpm install --frozen-lockfile`. Project dependency versions remain independent; identical files share the user package store. Use `pnpm run <script>` for local scripts.

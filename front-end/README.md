@@ -3,8 +3,8 @@ Here is a simple react website I made just to interact with the deployed API. To
 
 ## 👟 Running the website locally
 
-1. **Install dependencies**: `npm install`
-2. **Run**: `npm run dev`
+1. **Install dependencies**: `pnpm install --frozen-lockfile`
+2. **Run**: `pnpm run dev`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.

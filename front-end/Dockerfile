@@ -2,8 +2,9 @@ FROM node:20
 
 WORKDIR /app
 
-COPY package*.json ./
-RUN npm ci
+RUN npm install --global pnpm@10.34.7
+COPY package.json pnpm-lock.yaml .npmrc ./
+RUN pnpm install --frozen-lockfile
 
 COPY . .
 
@@ -15,4 +16,4 @@ ENV VITE_API_WORKS=${VITE_API_WORKS}
 
 EXPOSE 3000
 
-CMD ["npm", "run", "dev"]
+CMD ["pnpm", "run", "dev"]
